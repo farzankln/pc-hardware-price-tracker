@@ -2,16 +2,15 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useWishlist } from "../hooks/useWishlist";
 import { categories } from "../data/categories";
 import type { Product } from "../data/mock-products";
+import WishlistButton from "./WishlistButton";
 
 function getCategoryName(slug: string) {
   return categories.find((c) => c.slug === slug)?.name ?? slug;
 }
 
 export default function ProductDetails({ product }: { product: Product }) {
-  const { toggleWishlist, isInWishlist } = useWishlist();
   const categoryName = getCategoryName(product.category);
 
   const sections = [
@@ -110,12 +109,7 @@ export default function ProductDetails({ product }: { product: Product }) {
           </div>
 
           <div className="mt-6">
-            <button
-              onClick={() => toggleWishlist(product.id)}
-              className="rounded-lg border border-gray-300 px-6 py-2 font-medium text-gray-700 transition hover:bg-gray-50"
-            >
-              {isInWishlist(product.id) ? "Remove from Wishlist" : "Add to Wishlist"}
-            </button>
+            <WishlistButton productId={product.id} />
           </div>
         </div>
       </div>
