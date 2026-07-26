@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { WishlistProvider } from "./hooks/useWishlist";
+import { CartProvider } from "./hooks/useCart";
 import Header from "./components/Header";
 import "./styles/globals.css";
 
@@ -31,8 +32,10 @@ export default function RootLayout({
     >
       <body>
         <WishlistProvider>
-          <Header />
-          {children}
+          <CartProvider>
+            <Header />
+            {children}
+          </CartProvider>
         </WishlistProvider>
       </body>
     </html>
