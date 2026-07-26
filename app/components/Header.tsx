@@ -2,10 +2,13 @@
 
 import Link from "next/link";
 import { useWishlist } from "../hooks/useWishlist";
+import { useCart } from "../hooks/useCart";
 import { categories } from "../data/categories";
 
 export default function Header() {
-  const { wishlist, isHydrated } = useWishlist();
+  const { wishlist, isHydrated: wishlistHydrated } = useWishlist();
+  const { getTotalItems, isHydrated: cartHydrated } = useCart();
+  const cartCount = getTotalItems();
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-gray-900 text-white">
@@ -38,9 +41,18 @@ export default function Header() {
 
           <Link href="/wishlist" className="relative text-sm text-gray-300 hover:text-white">
             Wishlist
-            {isHydrated && wishlist.length > 0 && (
+            {wishlistHydrated && wishlist.length > 0 && (
               <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold">
                 {wishlist.length}
+              </span>
+            )}
+          </Link>
+
+          <Link href="/cart" className="relative text-sm text-gray-300 hover:text-white">
+            Cart
+            {cartHydrated && cartCount > 0 && (
+              <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold">
+                {cartCount}
               </span>
             )}
           </Link>

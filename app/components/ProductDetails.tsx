@@ -1,10 +1,12 @@
 "use client";
 
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { categories } from "../data/categories";
 import type { Product } from "../data/mock-products";
 import WishlistButton from "./WishlistButton";
+import { useCart } from "../hooks/useCart";
 
 function getCategoryName(slug: string) {
   return categories.find((c) => c.slug === slug)?.name ?? slug;
@@ -12,6 +14,24 @@ function getCategoryName(slug: string) {
 
 export default function ProductDetails({ product }: { product: Product }) {
   const categoryName = getCategoryName(product.category);
+  const { items, addToCart, updateQuantity, isHydrated } = useCart();
+  const cartItem = items.find((item) => item.productId === product.id);
+  const cartQuantity = cartItem?.quantity ?? 0;
+  const [justAdded, setJustAdded] = useState(false);
+
+  const handleAddToCart = () => {
+    addToCart(product.id);
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 1200);
+  };
+
+  const handleIncrement = () => {
+    updateQuantity(product.id, cartQuantity + 1);
+  };
+
+  const handleDecrement = () => {
+    updateQuantity(product.id, cartQuantity - 1);
+  };
 
   const sections = [
     {
@@ -108,8 +128,38 @@ export default function ProductDetails({ product }: { product: Product }) {
             </span>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-6 flex flex-col gap-3">
             <WishlistButton productId={product.id} />
+
+            {isHydrated && cartQuantity > 0 && (
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-600">In Cart:</span>
+                <button
+                  onClick={handleDecrement}
+                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-300 text-gray-700 transition hover:bg-gray-50"
+                >
+                  -
+                </button>
+                <span className="w-8 text-center text-sm font-medium text-gray-900">{cartQuantity}</span>
+                <button
+                  onClick={handleIncrement}
+                  className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-300 text-gray-700 transition hover:bg-gray-50"
+                >
+                  +
+                </button>
+              </div>
+            )}
+
+            <button
+              onClick={handleAddToCart}
+              className={`rounded-lg px-6 py-2 font-medium transition ${
+                justAdded
+                  ? "bg-green-600 text-white"
+                  : "bg-blue-600 text-white hover:bg-blue-700"
+              }`}
+            >
+              {justAdded ? "Added!" : "Add to Cart"}
+            </button>
           </div>
         </div>
       </div>
