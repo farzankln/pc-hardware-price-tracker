@@ -9,9 +9,10 @@ export function generateStaticParams() {
   }));
 }
 
-export default function CategoryPage({ params }: { params: { slug: string } }) {
-  const category = categories.find((c) => c.slug === params.slug);
-  const categoryProducts = products.filter((p) => p.category === params.slug);
+export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const category = categories.find((c) => c.slug === slug);
+  const categoryProducts = products.filter((p) => p.category === slug);
 
   if (!category) {
     return null;

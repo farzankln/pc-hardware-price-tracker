@@ -15,6 +15,7 @@ type WishlistContextType = {
   wishlist: string[];
   toggleWishlist: (id: string) => void;
   isInWishlist: (id: string) => boolean;
+  isHydrated: boolean;
 };
 
 const WishlistContext = createContext<WishlistContextType | undefined>(undefined);
@@ -34,10 +35,12 @@ function saveWishlist(items: string[]) {
 }
 
 export function WishlistProvider({ children }: { children: ReactNode }) {
-  const [wishlist, setWishlist] = useState<string[]>([]);
+  const [wishlist, setWishlist] = useState<string[]>(() => getWishlist());
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    setWishlist(getWishlist());
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsHydrated(true);
   }, []);
 
   const toggleWishlist = useCallback((id: string) => {
@@ -53,7 +56,7 @@ export function WishlistProvider({ children }: { children: ReactNode }) {
   }, [wishlist]);
 
   return (
-    <WishlistContext.Provider value={{ wishlist, toggleWishlist, isInWishlist }}>
+    <WishlistContext.Provider value={{ wishlist, toggleWishlist, isInWishlist, isHydrated }}>
       {children}
     </WishlistContext.Provider>
   );
