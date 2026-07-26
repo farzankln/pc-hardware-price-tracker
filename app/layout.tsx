@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { WishlistProvider } from "./hooks/useWishlist";
+import Header from "./components/Header";
 import "./styles/globals.css";
 
 const geistSans = Geist({
@@ -27,7 +29,12 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body>{children}</body>
+      <body>
+        <WishlistProvider>
+          <Header />
+          {children}
+        </WishlistProvider>
+      </body>
     </html>
   );
 }
