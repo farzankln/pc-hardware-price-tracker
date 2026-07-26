@@ -1,3 +1,9 @@
+import HeroSlider from "./components/HeroSlider";
+
 export default function Home() {
-  return <div className="mx-auto">hello world!</div>;
+  return (
+    <div className="mx-auto">
+      <HeroSlider />
+    </div>
+  );
 }
