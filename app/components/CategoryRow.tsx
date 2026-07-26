@@ -2,6 +2,7 @@ import Link from "next/link";
 import { products } from "../data/mock-products";
 import ProductCard from "./ProductCard";
 import type { CategorySlug } from "../data/categories";
+import { ArrowRight } from "lucide-react";
 
 export default function CategoryRow({
   categorySlug,
@@ -15,23 +16,24 @@ export default function CategoryRow({
     .slice(0, 8);
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-8">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold">{categoryName}</h2>
+    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+      <div className="mb-5 flex items-center justify-between">
+        <h2 className="text-xl font-bold tracking-tight text-foreground">{categoryName}</h2>
         <Link
           href={`/category/${categorySlug}`}
-          className="text-sm font-medium text-blue-600 hover:text-blue-800"
+          className="inline-flex items-center gap-1 text-sm font-semibold text-primary transition hover:text-primary-hover"
         >
-          View All {categoryName}
+          View All
+          <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
 
       {categoryProducts.length === 0 ? (
-        <p className="text-gray-500">No products in this category.</p>
+        <p className="text-text-muted">No products in this category.</p>
       ) : (
-        <div className="flex overflow-x-auto gap-4 pb-4">
+        <div className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-thin">
           {categoryProducts.map((product) => (
-            <div key={product.id} className="min-w-[220px] flex-shrink-0">
+            <div key={product.id} className="min-w-[220px] sm:min-w-[240px] flex-shrink-0">
               <ProductCard product={product} separator />
             </div>
           ))}

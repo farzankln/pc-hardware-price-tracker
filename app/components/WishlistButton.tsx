@@ -1,5 +1,6 @@
 "use client";
 
+import { Heart } from "lucide-react";
 import { useWishlist } from "../hooks/useWishlist";
 
 export default function WishlistButton({ productId }: { productId: string }) {
@@ -9,9 +10,14 @@ export default function WishlistButton({ productId }: { productId: string }) {
   return (
     <button
       onClick={() => toggleWishlist(productId)}
-      className="rounded-lg border border-gray-300 px-6 py-2 font-medium text-gray-700 transition hover:bg-gray-50"
+      className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+        inWishlist
+          ? "border-danger bg-danger-muted text-danger"
+          : "border-border bg-background text-text-secondary hover:bg-surface hover:text-foreground"
+      }`}
     >
-      {isHydrated ? (inWishlist ? "💔 Remove from Wishlist" : "❤️ Add to Wishlist") : "❤️ Add to Wishlist"}
+      <Heart className={`h-4 w-4 ${inWishlist ? "fill-danger" : ""}`} />
+      {isHydrated ? (inWishlist ? "Remove from Wishlist" : "Add to Wishlist") : "Add to Wishlist"}
     </button>
   );
 }

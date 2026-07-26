@@ -2,31 +2,40 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
     id: "slide-1",
-    imageUrl: "https://placehold.co/1200x400/333/FFF?text=Slide+1",
+    imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=Next-Gen+CPUs",
     title: "Next-Gen CPUs Are Here",
-    subtitle: "Upgrade your rig with the latest processors.",
+    subtitle: "Upgrade your rig with the latest processors. Unmatched performance for gaming and creation.",
+    cta: "Shop CPUs",
+    href: "/category/cpu",
   },
   {
     id: "slide-2",
-    imageUrl: "https://placehold.co/1200x400/222/FFF?text=Slide+2",
+    imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=RTX+40+Series",
     title: "RTX 40 Series GPUs",
-    subtitle: "Unleash 4K gaming with ray tracing.",
+    subtitle: "Unleash 4K gaming with ray tracing and AI-powered DLSS 3.",
+    cta: "Shop GPUs",
+    href: "/category/gpu",
   },
   {
     id: "slide-3",
-    imageUrl: "https://placehold.co/1200x400/111/FFF?text=Slide+3",
+    imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=DDR5+Memory",
     title: "DDR5 Memory Deals",
-    subtitle: "Speed up your system with DDR5 kits.",
+    subtitle: "Speed up your system with high-frequency DDR5 kits. Limited time offers.",
+    cta: "Shop RAM",
+    href: "/category/ram",
   },
   {
     id: "slide-4",
-    imageUrl: "https://placehold.co/1200x400/444/FFF?text=Slide+4",
+    imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=NVMe+SSDs",
     title: "NVMe SSDs On Sale",
-    subtitle: "Blazing-fast storage for instant loads.",
+    subtitle: "Blazing-fast storage for instant loads. Up to 7,450 MB/s read speeds.",
+    cta: "Shop SSDs",
+    href: "/category/ssd",
   },
 ];
 
@@ -42,18 +51,18 @@ export default function HeroSlider() {
   }, []);
 
   useEffect(() => {
-    const timer = setInterval(next, 5000);
+    const timer = setInterval(next, 6000);
     return () => clearInterval(timer);
   }, [next]);
 
   return (
     <div className="relative w-full overflow-hidden">
-      <div className="relative h-[200px] w-full md:h-[400px]">
+      <div className="relative h-[280px] w-full sm:h-[400px] md:h-[500px] lg:h-[560px]">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-              index === current ? "opacity-100" : "opacity-0"
+            className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+              index === current ? "opacity-100 scale-100" : "opacity-0 scale-105"
             }`}
           >
             <Image
@@ -64,16 +73,23 @@ export default function HeroSlider() {
               unoptimized
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
-            <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-16">
-              <h2 className="text-2xl font-bold text-white md:text-4xl">
-                {slide.title}
-              </h2>
-              {slide.subtitle && (
-                <p className="mt-2 max-w-xl text-sm text-gray-200 md:text-lg">
+            <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+            <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20">
+              <div className="max-w-2xl">
+                <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
+                  {slide.title}
+                </h2>
+                <p className="mt-3 max-w-lg text-sm text-text-secondary sm:text-base md:text-lg">
                   {slide.subtitle}
                 </p>
-              )}
+                <a
+                  href={slide.href}
+                  className="mt-6 inline-flex h-11 items-center justify-center rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground transition hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-primary/50"
+                >
+                  {slide.cta}
+                </a>
+              </div>
             </div>
           </div>
         ))}
@@ -81,26 +97,26 @@ export default function HeroSlider() {
 
       <button
         onClick={prev}
-        className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-2 text-white hover:bg-black/60"
+        className="absolute left-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition hover:bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
         aria-label="Previous slide"
       >
-        ‹
+        <ChevronLeft className="h-5 w-5" />
       </button>
       <button
         onClick={next}
-        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/40 p-2 text-white hover:bg-black/60"
+        className="absolute right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition hover:bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
         aria-label="Next slide"
       >
-        ›
+        <ChevronRight className="h-5 w-5" />
       </button>
 
-      <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-2">
+      <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2">
         {slides.map((slide, index) => (
           <button
             key={slide.id}
             onClick={() => setCurrent(index)}
-            className={`h-2.5 w-2.5 rounded-full transition-all ${
-              index === current ? "bg-white w-6" : "bg-white/50 hover:bg-white/80"
+            className={`h-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+              index === current ? "w-6 bg-primary" : "w-2 bg-foreground/30 hover:bg-foreground/60"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
