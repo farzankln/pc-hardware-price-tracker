@@ -1,6 +1,7 @@
 import { CategorySlug } from "./categories";
 
 export interface Product {
+  fallbackImageUrl?: string;
   id: string;
   name: string;
   category: CategorySlug;
@@ -45,7 +46,8 @@ export const products: Product[] = [
     model: "i9-14900K",
     partNumber: "BX8071514900K",
     price: 589.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=Intel-Core-i9-14900K",
+    imageUrl: "/img/cpu/p1.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=Intel-Core-i9-14900K",
     inStock: true,
     description:
       "The Intel Core i9-14900K is a high-end desktop processor featuring 24 cores and 32 threads, delivering exceptional performance for gaming, content creation, and multitasking.",
@@ -66,7 +68,8 @@ export const products: Product[] = [
     partNumber: "100-100000514WOF",
     price: 699.99,
     originalPrice: 749.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=AMD-Ryzen-9-7950X",
+    imageUrl: "/img/cpu/p2.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=AMD-Ryzen-9-7950X",
     inStock: true,
     description:
       "The AMD Ryzen 9 7950X is a flagship desktop processor with 16 cores and 32 threads, built on Zen 4 architecture for elite gaming and productivity performance.",
@@ -86,7 +89,8 @@ export const products: Product[] = [
     model: "i7-14700K",
     partNumber: "BX8071514700K",
     price: 419.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=Intel-Core-i7-14700K",
+    imageUrl: "/img/cpu/p3.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=Intel-Core-i7-14700K",
     inStock: true,
     description:
       "The Intel Core i7-14700K offers 20 cores and 28 threads, providing strong performance for gaming and creative workloads at a competitive price point.",
@@ -106,7 +110,8 @@ export const products: Product[] = [
     model: "7600X",
     partNumber: "100-100001593BOX",
     price: 249.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=AMD-Ryzen-5-7600X",
+    imageUrl: "/img/cpu/p4.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=AMD-Ryzen-5-7600X",
     inStock: false,
     description:
       "The AMD Ryzen 5 7600X is a 6-core, 12-thread processor built on Zen 4 architecture, offering excellent gaming performance for mainstream builds.",
@@ -127,7 +132,8 @@ export const products: Product[] = [
     partNumber: "900-1G136-2520-000",
     price: 1599.99,
     originalPrice: 1799.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=NVIDIA-RTX-4090",
+    imageUrl: "/img/gpu/p5.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=NVIDIA-RTX-4090",
     inStock: true,
     description:
       "The NVIDIA GeForce RTX 4090 is the ultimate gaming GPU, powered by Ada Lovelace architecture with 24GB GDDR6X memory for 4K gaming and AI workloads.",
@@ -159,7 +165,8 @@ export const products: Product[] = [
     model: "RX 7900 XTX",
     partNumber: "100-438-0000-V2",
     price: 949.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=AMD-RX-7900-XTX",
+    imageUrl: "/img/gpu/p6.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=AMD-RX-7900-XTX",
     inStock: true,
     description:
       "The AMD Radeon RX 7900 XTX delivers exceptional 4K gaming performance with 24GB GDDR6 memory and RDNA 3 architecture.",
@@ -192,7 +199,8 @@ export const products: Product[] = [
     partNumber: "900-1G416-2520-000",
     price: 799.99,
     originalPrice: 899.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=NVIDIA-RTX-4070-Ti",
+    imageUrl: "/img/gpu/p7.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=NVIDIA-RTX-4070-Ti",
     inStock: true,
     description:
       "The NVIDIA GeForce RTX 4070 Ti brings high-frame-rate 1440p gaming with DLSS 3 support and 12GB of fast GDDR6X memory.",
@@ -224,7 +232,8 @@ export const products: Product[] = [
     model: "F5-5600J3636D16GA2-TZ5RS",
     partNumber: "F5-5600J3636D16GA2-TZ5RS",
     price: 134.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=G-Skill-Trident-Z5",
+    imageUrl: "/img/ram/p8.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=G-Skill-Trident-Z5",
     inStock: true,
     description:
       "G.Skill Trident Z5 RGB DDR5 memory kit delivers high-speed performance with stunning RGB lighting, optimized for Intel and AMD platforms.",
@@ -246,7 +255,8 @@ export const products: Product[] = [
     partNumber: "CMK64GX5M2B5600C36",
     price: 229.99,
     originalPrice: 279.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=Corsair-Vengeance-DDR5",
+    imageUrl: "/img/ram/p9.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=Corsair-Vengeance-DDR5",
     inStock: true,
     description:
       "Corsair Vengeance DDR5 64GB kit offers massive capacity for content creators and enthusiasts, with optimized overclocking profiles.",
@@ -267,7 +277,8 @@ export const products: Product[] = [
     model: "KF556C40BBK2-16",
     partNumber: "KF556C40BBK2-16",
     price: 59.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=Kingston-FURY-Beast",
+    imageUrl: "/img/ram/p10.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=Kingston-FURY-Beast",
     inStock: true,
     description:
       "Kingston FURY Beast DDR5 memory delivers reliable high-speed performance with a low-profile heat spreader, ideal for gaming rigs.",
@@ -289,7 +300,8 @@ export const products: Product[] = [
     partNumber: "MZ-V9P2T0BW",
     price: 179.99,
     originalPrice: 229.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=Samsung-990-Pro",
+    imageUrl: "/img/ssd/p11.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=Samsung-990-Pro",
     inStock: true,
     description:
       "Samsung 990 Pro 2TB NVMe SSD delivers blistering sequential speeds up to 7,450 MB/s, perfect for gaming and professional workloads.",
@@ -307,7 +319,8 @@ export const products: Product[] = [
     model: "WDS100T2X0E",
     partNumber: "WDS100T2X0E",
     price: 89.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=WD-Black-SN850X",
+    imageUrl: "/img/ssd/p12.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=WD-Black-SN850X",
     inStock: true,
     description:
       "WD Black SN850X 1TB NVMe SSD offers fast load times and high throughput for gaming consoles and PCs alike.",
@@ -325,7 +338,8 @@ export const products: Product[] = [
     model: "ST2000DM008",
     partNumber: "ST2000DM008",
     price: 54.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=Seagate-Barracuda",
+    imageUrl: "/img/hdd/p13.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=Seagate-Barracuda",
     inStock: true,
     description:
       "Seagate Barracuda 2TB internal hard drive provides reliable mass storage with a 7200 RPM spindle speed for everyday computing.",
@@ -344,7 +358,8 @@ export const products: Product[] = [
     partNumber: "WD40EZAZ",
     price: 79.99,
     originalPrice: 99.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=WD-Blue-4TB",
+    imageUrl: "/img/hdd/p14.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=WD-Blue-4TB",
     inStock: true,
     description:
       "WD Blue 4TB hard drive offers large-capacity storage with low power consumption and quiet operation, ideal for desktops and home servers.",
@@ -362,7 +377,8 @@ export const products: Product[] = [
     model: "X670E Hero",
     partNumber: "ROG CROSSHAIR X670E HERO",
     price: 699.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=ASUS-ROG-Crosshair",
+    imageUrl: "/img/motherboard/p15.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=ASUS-ROG-Crosshair",
     inStock: true,
     description:
       "ASUS ROG Crosshair X670E Hero is an enthusiast-grade AM5 motherboard with robust power delivery, PCIe 5.0, and rich connectivity for next-gen Ryzen CPUs.",
@@ -381,7 +397,8 @@ export const products: Product[] = [
     model: "B550 Gaming Plus",
     partNumber: "B550-GAMING-PLUS",
     price: 139.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=MSI-MPG-B550",
+    imageUrl: "/img/motherboard/p16.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=MSI-MPG-B550",
     inStock: false,
     description:
       "MSI MPG B550 Gaming Plus motherboard supports AMD Ryzen processors with PCIe 4.0, Mystic Light RGB, and durable components for reliable gaming.",
@@ -401,7 +418,8 @@ export const products: Product[] = [
     partNumber: "220-GP-1000-X1",
     price: 179.99,
     originalPrice: 219.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=EVGA-SuperNOVA-1000",
+    imageUrl: "/img/power-supply/p17.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=EVGA-SuperNOVA-1000",
     inStock: true,
     description:
       "EVGA SuperNOVA 1000 G6 is a fully modular 80 Plus Gold power supply delivering clean, stable power for high-end gaming and workstation builds.",
@@ -419,7 +437,8 @@ export const products: Product[] = [
     model: "RM850x",
     partNumber: "CP-9020180-NA",
     price: 149.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=Corsair-RM850x",
+    imageUrl: "/img/power-supply/p18.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=Corsair-RM850x",
     inStock: true,
     description:
       "Corsair RM850x is a quiet, fully modular 80 Plus Gold PSU with a 135mm magnetic levitation fan and low-noise operation.",
@@ -438,7 +457,8 @@ export const products: Product[] = [
     partNumber: "CC-H91FW-01",
     price: 139.99,
     originalPrice: 169.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=NZXT-H9-Flow",
+    imageUrl: "/img/case/p19.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=NZXT-H9-Flow",
     inStock: true,
     description:
       "NZXT H9 Flow is a premium mid-tower case with a sleek minimalist design, high airflow mesh panels, and support for multiple radiators.",
@@ -455,7 +475,8 @@ export const products: Product[] = [
     model: "Dynamic EVO",
     partNumber: "PC-O11D-EX",
     price: 169.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=Lian-Li-O11-Dynamic",
+    imageUrl: "/img/case/p20.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=Lian-Li-O11-Dynamic",
     inStock: true,
     description:
       "Lian Li PC-O11 Dynamic EVO is a dual-chamber showcase case designed for custom loop builds with outstanding cooling potential.",
@@ -472,7 +493,8 @@ export const products: Product[] = [
     model: "X73",
     partNumber: "RL-KRX73-01",
     price: 179.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=NZXT-Kraken-X73",
+    imageUrl: "/img/cooler/p21.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=NZXT-Kraken-X73",
     inStock: true,
     description:
       "NZXT Kraken X73 is a 360mm all-in-one liquid CPU cooler with RGB pump head, customizable fan curves, and CAM software integration.",
@@ -490,7 +512,8 @@ export const products: Product[] = [
     partNumber: "NH-D15",
     price: 99.99,
     originalPrice: 109.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=Noctua-NH-D15",
+    imageUrl: "/img/cooler/p22.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=Noctua-NH-D15",
     inStock: true,
     description:
       "Noctua NH-D15 is a premium dual-tower air cooler with exceptional cooling performance and near-silent operation thanks to its renowned fans.",
@@ -508,7 +531,8 @@ export const products: Product[] = [
     partNumber: "27GP950-B",
     price: 649.99,
     originalPrice: 799.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=LG-UltraGear-27GP950",
+    imageUrl: "/img/monitor/p23.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=LG-UltraGear-27GP950",
     inStock: true,
     description:
       "LG UltraGear 27GP950 is a 27-inch 4K 144Hz gaming monitor with NVIDIA G-SYNC, 1ms response time, and HDR600 for immersive gameplay.",
@@ -530,7 +554,8 @@ export const products: Product[] = [
     model: "U2723QE",
     partNumber: "U2723QE",
     price: 549.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=Dell-UltraSharp-U2723QE",
+    imageUrl: "/img/monitor/p24.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=Dell-UltraSharp-U2723QE",
     inStock: true,
     description:
       "Dell UltraSharp U2723QE is a 27-inch 4K USB-C hub monitor with IPS Black technology, delivering deep blacks and factory color calibration.",
@@ -553,7 +578,8 @@ export const products: Product[] = [
     partNumber: "MZ-V9P4T0BW",
     price: 349.99,
     originalPrice: 449.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=Samsung-990-Pro-4TB",
+    imageUrl: "/img/ssd/p25.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=Samsung-990-Pro-4TB",
     inStock: true,
     description:
       "Samsung 990 Pro 4TB NVMe SSD expands your storage capacity while maintaining top-tier sequential read speeds up to 7,450 MB/s.",
@@ -571,7 +597,8 @@ export const products: Product[] = [
     model: "LL120",
     partNumber: "CO-9050071-WW",
     price: 29.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=Corsair-LL120-RGB",
+    imageUrl: "/img/cooler/p26.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=Corsair-LL120-RGB",
     inStock: true,
     description:
       "Corsair LL120 RGB fan delivers brilliant lighting and strong airflow with a 120mm frame, compatible with Corsair iCUE control.",
@@ -588,7 +615,8 @@ export const products: Product[] = [
     model: "S28AG70",
     partNumber: "S28AG70",
     price: 449.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=Samsung-Odyssey-G7",
+    imageUrl: "/img/monitor/p27.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=Samsung-Odyssey-G7",
     inStock: false,
     description:
       "Samsung Odyssey G7 28-inch monitor features a 4K 144Hz panel with 1ms response time and G-SYNC compatibility for competitive gaming.",
@@ -611,7 +639,8 @@ export const products: Product[] = [
     partNumber: "RC-122-KKN2",
     price: 69.99,
     originalPrice: 89.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=Cooler-Master-N200",
+    imageUrl: "/img/case/p28.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=Cooler-Master-N200",
     inStock: true,
     description:
       "Cooler Master N200 is a compact micro-ATX case with tool-less drive cages, mesh front panel, and support for long graphics cards.",
@@ -628,7 +657,8 @@ export const products: Product[] = [
     model: "Dark Power Pro 12 1200W",
     partNumber: "BN311",
     price: 339.99,
-    imageUrl: "https://placehold.co/600x400/EEE/31343C?text=be-quiet-Dark-Power",
+    imageUrl: "/img/power-supply/p29.webp",
+    fallbackImageUrl: "https://placehold.co/600x400/EEE/31343C?text=be-quiet-Dark-Power",
     inStock: true,
     description:
       "be quiet! Dark Power Pro 12 1200W is a premium fully modular 80 Plus Titanium PSU with near-silent operation and native ATX 3.0 support.",

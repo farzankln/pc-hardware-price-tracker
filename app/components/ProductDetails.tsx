@@ -22,6 +22,7 @@ export default function ProductDetails({ product }: { product: Product }) {
   const cartQuantity = cartItem?.quantity ?? 0;
   const [justAdded, setJustAdded] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [imgSrc, setImgSrc] = useState(product.imageUrl);
 
   const handleAddToCart = () => {
     addToCart(product.id, quantity);
@@ -36,6 +37,12 @@ export default function ProductDetails({ product }: { product: Product }) {
 
   const handleDecrement = () => {
     if (quantity > 1) setQuantity((q) => q - 1);
+  };
+
+  const handleImageError = () => {
+    if (imgSrc !== product.fallbackImageUrl) {
+      setImgSrc(product.fallbackImageUrl || "/img/placeholder.svg");
+    }
   };
 
   const specs = [
@@ -132,10 +139,11 @@ export default function ProductDetails({ product }: { product: Product }) {
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
         <div className="relative aspect-square w-full lg:aspect-auto lg:h-[500px] bg-surface rounded-2xl overflow-hidden">
           <Image
-            src={product.imageUrl}
+            src={imgSrc}
             alt={product.name}
             fill
             unoptimized
+            onError={handleImageError}
             className="object-contain p-6"
             priority
           />

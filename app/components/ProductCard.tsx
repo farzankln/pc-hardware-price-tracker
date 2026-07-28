@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { Product } from "../data/mock-products";
@@ -19,6 +20,13 @@ export default function ProductCard({
   const discountPercent = hasDiscount
     ? Math.round(((product.originalPrice! - product.price) / product.originalPrice!) * 100)
     : 0;
+  const [imgSrc, setImgSrc] = useState(product.imageUrl);
+
+  const handleImageError = () => {
+    if (imgSrc !== product.fallbackImageUrl) {
+      setImgSrc(product.fallbackImageUrl || "/img/placeholder.svg");
+    }
+  };
 
   return (
     <div
@@ -31,10 +39,11 @@ export default function ProductCard({
       <Link href={`/product/${product.id}`} className="flex flex-col flex-1">
         <div className="relative aspect-square w-full bg-surface">
           <Image
-            src={product.imageUrl}
+            src={imgSrc}
             alt={product.name}
             fill
             unoptimized
+            onError={handleImageError}
             className="object-contain p-3 transition-transform duration-300 group-hover:scale-105"
           />
           {hasDiscount && (
