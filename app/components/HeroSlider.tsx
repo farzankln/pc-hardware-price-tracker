@@ -5,11 +5,21 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 
-const slides = [
+interface Slide {
+  id: string;
+  imageUrl: string;
+  fallbackImageUrl: string;
+  title: string;
+  subtitle: string;
+  cta: string;
+  href: string;
+}
+
+const slides: Slide[] = [
   {
     id: "slide-1",
-    // imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=RTX+40+Series",
     imageUrl: "/hero/GPU.webp",
+    fallbackImageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=RTX+40+Series",
     title: "RTX 40 Series GPUs",
     subtitle: "Unleash 4K gaming with ray tracing and AI-powered DLSS 3.",
     cta: "Shop GPUs",
@@ -17,8 +27,8 @@ const slides = [
   },
   {
     id: "slide-2",
-    // imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=DDR5+Memory",
     imageUrl: "/hero/RAM.png",
+    fallbackImageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=DDR5+Memory",
     title: "DDR5 Memory Deals",
     subtitle:
       "Speed up your system with high-frequency DDR5 kits. Limited time offers.",
@@ -27,8 +37,8 @@ const slides = [
   },
   {
     id: "slide-3",
-    // imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=Next-Gen+CPUs",
     imageUrl: "/hero/CPU.webp",
+    fallbackImageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=Next-Gen+CPUs",
     title: "Next-Gen CPUs Are Here",
     subtitle:
       "Upgrade your rig with the latest processors. Unmatched performance for gaming and creation.",
@@ -37,8 +47,8 @@ const slides = [
   },
   {
     id: "slide-4",
-    // imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=NVMe+SSDs",
     imageUrl: "/hero/SSD.png",
+    fallbackImageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=NVMe+SSDs",
     title: "NVMe SSDs On Sale",
     subtitle:
       "Blazing-fast storage for instant loads. Up to 7,450 MB/s read speeds.",
@@ -49,6 +59,7 @@ const slides = [
 
 export default function HeroSlider() {
   const [current, setCurrent] = useState(0);
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
 
   const next = useCallback(() => {
     setCurrent((prev) => (prev + 1) % slides.length);
@@ -63,45 +74,56 @@ export default function HeroSlider() {
     return () => clearInterval(timer);
   }, [next, current]);
 
+  const handleImageError = useCallback((slideId: string) => {
+    setImageErrors((prev) => {
+      if (prev[slideId]) return prev;
+      return { ...prev, [slideId]: true };
+    });
+  }, []);
+
   return (
     <div className="relative container mx-auto w-full overflow-hidden rounded-xl">
       <div className="relative h-[280px] w-full sm:h-[400px] md:h-[500px] lg:h-[620px]">
-        {slides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-              index === current
-                ? "opacity-100 scale-100"
-                : "opacity-0 scale-105"
-            }`}
-          >
-            <Image
-              src={slide.imageUrl}
-              alt={slide.title}
-              fill
-              priority={index === 0}
-              unoptimized
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-gray-950/50 to-transparent" />
-            <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20">
-              <div className="max-w-2xl">
-                <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
-                  {slide.title}
-                </h2>
-                <p className="mt-3 max-w-lg text-sm text-text-secondary sm:text-base md:text-lg">
-                  {slide.subtitle}
-                </p>
-                <Link
-                  href={slide.href}
-                  className="mt-6 inline-flex h-11 items-center justify-center rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground transition hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-primary/50"
-                >
-                  {slide.cta}
-                </Link>
+        {slides.map((slide, index) => {
+          const src = imageErrors[slide.id] ? slide.fallbackImageUrl : slide.imageUrl;
+          const isActive = index === current;
+
+          return (
+            <div
+              key={slide.id}
+              className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+                isActive ? "opacity-100 scale-100" : "opacity-0 scale-105"
+              }`}
+            >
+              <Image
+                src={src}
+                alt={slide.title}
+                fill
+                priority={index === 0}
+                unoptimized
+                className="object-cover"
+                onError={() => handleImageError(slide.id)}
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-gray-950/50 to-transparent" />
+              <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20">
+                <div className="max-w-2xl">
+                  <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
+                    {slide.title}
+                  </h2>
+                  <p className="mt-3 max-w-lg text-sm text-text-secondary sm:text-base md:text-lg">
+                    {slide.subtitle}
+                  </p>
+                  <Link
+                    href={slide.href}
+                    className="mt-6 inline-flex h-11 items-center justify-center rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground transition hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  >
+                    {slide.cta}
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <button
