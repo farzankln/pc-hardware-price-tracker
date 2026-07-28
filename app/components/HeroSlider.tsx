@@ -70,7 +70,7 @@ export default function HeroSlider() {
   }, []);
 
   useEffect(() => {
-    const timer = setInterval(next, 6000);
+    const timer = setInterval(next, 8000);
     return () => clearInterval(timer);
   }, [next, current]);
 
@@ -92,7 +92,7 @@ export default function HeroSlider() {
             <div
               key={slide.id}
               className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-                isActive ? "opacity-100 scale-100" : "opacity-0 scale-105"
+                isActive ? "opacity-100 scale-100 z-10" : "opacity-0 scale-105 z-0"
               }`}
             >
               <Image
@@ -128,20 +128,20 @@ export default function HeroSlider() {
 
       <button
         onClick={prev}
-        className="absolute left-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition hover:bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
+        className="absolute z-20 left-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition hover:bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
         aria-label="Previous slide"
       >
         <ChevronLeft className="h-5 w-5" />
       </button>
       <button
         onClick={next}
-        className="absolute right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition hover:bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
+        className="absolute z-20 right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition hover:bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
         aria-label="Next slide"
       >
         <ChevronRight className="h-5 w-5" />
       </button>
 
-      <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2">
+      <div className="absolute z-20 bottom-5 left-1/2 flex -translate-x-1/2 gap-2">
         {slides.map((slide, index) => (
           <button
             key={slide.id}
