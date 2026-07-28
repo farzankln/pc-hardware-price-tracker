@@ -78,7 +78,7 @@ export default function ProductCard({ product }: { product: Product }) {
           e.preventDefault();
           toggleWishlist(product.id);
         }}
-        className={`absolute right-2 top-2 rounded-lg bg-background/80 p-1.5 backdrop-blur-sm transition-all duration-200 hover:bg-background/90 focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+        className={`absolute cursor-pointer right-2 top-2 rounded-lg bg-background/80 p-1.5 backdrop-blur-sm transition-all duration-200 hover:bg-background/90 outline-none ${
           inWishlist
             ? "opacity-100 text-danger"
             : "opacity-0 text-text-muted group-hover:opacity-100"
