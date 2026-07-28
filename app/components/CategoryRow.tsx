@@ -34,7 +34,7 @@ export default function CategoryRow({
         <div className="flex overflow-x-auto gap-4 pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-thin">
           {categoryProducts.map((product) => (
             <div key={product.id} className="min-w-[220px] sm:min-w-[240px] flex-shrink-0">
-              <ProductCard product={product} separator />
+              <ProductCard product={product} />
             </div>
           ))}
         </div>
