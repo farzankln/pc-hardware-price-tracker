@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 const slides = [
   {
@@ -58,13 +59,13 @@ export default function HeroSlider() {
   }, []);
 
   useEffect(() => {
-    const timer = setInterval(next, 6000);
+    const timer = setInterval(next, 8000);
     return () => clearInterval(timer);
-  }, [next]);
+  }, [next, current]);
 
   return (
-    <div className="relative w-full overflow-hidden">
-      <div className="relative h-[280px] w-full sm:h-[400px] md:h-[500px] lg:h-[560px]">
+    <div className="relative container mx-auto w-full overflow-hidden rounded-xl">
+      <div className="relative h-[280px] w-full sm:h-[400px] md:h-[500px] lg:h-[620px]">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
@@ -82,8 +83,7 @@ export default function HeroSlider() {
               unoptimized
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-gray-950/50 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-center px-6 sm:px-10 md:px-16 lg:px-20">
               <div className="max-w-2xl">
                 <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
@@ -92,12 +92,12 @@ export default function HeroSlider() {
                 <p className="mt-3 max-w-lg text-sm text-text-secondary sm:text-base md:text-lg">
                   {slide.subtitle}
                 </p>
-                <a
+                <Link
                   href={slide.href}
                   className="mt-6 inline-flex h-11 items-center justify-center rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground transition hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-primary/50"
                 >
                   {slide.cta}
-                </a>
+                </Link>
               </div>
             </div>
           </div>
