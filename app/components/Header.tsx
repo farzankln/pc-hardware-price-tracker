@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useWishlist } from "../hooks/useWishlist";
 import { useCart } from "../hooks/useCart";
 import { categories } from "../data/categories";
@@ -9,9 +10,19 @@ import { Search, Heart, ShoppingCart, Menu, X, Cpu } from "lucide-react";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
   const { wishlist, isHydrated: wishlistHydrated } = useWishlist();
   const { getTotalItems, isHydrated: cartHydrated } = useCart();
   const cartCount = getTotalItems();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const query = searchQuery.trim();
+    if (!query) return;
+    router.push(`/search?q=${encodeURIComponent(query)}`);
+    setSearchQuery("");
+  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
@@ -23,14 +34,23 @@ export default function Header() {
           </Link>
 
           <div className="hidden flex-1 max-w-xl md:block">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
+            <form onSubmit={handleSearch} className="relative">
+              <button
+                type="submit"
+                aria-label="Search"
+                className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted transition hover:text-foreground"
+              >
+                <Search className="h-4 w-4" />
+              </button>
               <input
                 type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search hardware..."
                 className="h-10 w-full rounded-lg border border-border bg-surface pl-10 pr-4 text-sm text-foreground placeholder:text-text-muted transition focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                aria-label="Search hardware"
               />
-            </div>
+            </form>
           </div>
 
           <nav className="hidden items-center gap-1 md:flex">
@@ -111,14 +131,23 @@ export default function Header() {
         {mobileMenuOpen && (
           <div className="border-t border-border py-4 md:hidden">
             <div className="mb-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
+              <form onSubmit={handleSearch} className="relative">
+                <button
+                  type="submit"
+                  aria-label="Search"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted transition hover:text-foreground"
+                >
+                  <Search className="h-4 w-4" />
+                </button>
                 <input
                   type="search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search hardware..."
                   className="h-10 w-full rounded-lg border border-border bg-surface pl-10 pr-4 text-sm text-foreground placeholder:text-text-muted focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  aria-label="Search hardware"
                 />
-              </div>
+              </form>
             </div>
             <nav className="flex flex-col gap-1">
               <Link
