@@ -581,7 +581,7 @@ export const products: Product[] = [
   },
   {
     id: "p27",
-    name: "Samsung Odyssey G7 28\"",
+    name: "Samsung Odyssey G7 28",
     category: "monitor",
     brand: "Samsung",
     series: "Odyssey G7",
