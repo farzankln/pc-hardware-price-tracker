@@ -16,7 +16,7 @@ export default function WishlistButton({ productId }: { productId: string }) {
           : "border-border bg-background text-text-secondary hover:bg-surface hover:text-foreground"
       }`}
     >
-      <Heart className={`h-4 w-4 ${inWishlist ? "fill-danger" : ""}`} />
+      <Heart className={`h-4 w-4 ${isHydrated && inWishlist ? "fill-danger" : ""}`} />
       {isHydrated ? (inWishlist ? "Remove from Wishlist" : "Add to Wishlist") : "Add to Wishlist"}
     </button>
   );
