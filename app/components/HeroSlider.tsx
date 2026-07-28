@@ -7,33 +7,40 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const slides = [
   {
     id: "slide-1",
-    imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=Next-Gen+CPUs",
-    title: "Next-Gen CPUs Are Here",
-    subtitle: "Upgrade your rig with the latest processors. Unmatched performance for gaming and creation.",
-    cta: "Shop CPUs",
-    href: "/category/cpu",
-  },
-  {
-    id: "slide-2",
-    imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=RTX+40+Series",
+    // imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=RTX+40+Series",
+    imageUrl: "/hero/GPU.webp",
     title: "RTX 40 Series GPUs",
     subtitle: "Unleash 4K gaming with ray tracing and AI-powered DLSS 3.",
     cta: "Shop GPUs",
     href: "/category/gpu",
   },
   {
-    id: "slide-3",
-    imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=DDR5+Memory",
+    id: "slide-2",
+    // imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=DDR5+Memory",
+    imageUrl: "/hero/RAM.png",
     title: "DDR5 Memory Deals",
-    subtitle: "Speed up your system with high-frequency DDR5 kits. Limited time offers.",
+    subtitle:
+      "Speed up your system with high-frequency DDR5 kits. Limited time offers.",
     cta: "Shop RAM",
     href: "/category/ram",
   },
   {
+    id: "slide-3",
+    // imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=Next-Gen+CPUs",
+    imageUrl: "/hero/CPU.webp",
+    title: "Next-Gen CPUs Are Here",
+    subtitle:
+      "Upgrade your rig with the latest processors. Unmatched performance for gaming and creation.",
+    cta: "Shop CPUs",
+    href: "/category/cpu",
+  },
+  {
     id: "slide-4",
-    imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=NVMe+SSDs",
+    // imageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=NVMe+SSDs",
+    imageUrl: "/hero/SSD.png",
     title: "NVMe SSDs On Sale",
-    subtitle: "Blazing-fast storage for instant loads. Up to 7,450 MB/s read speeds.",
+    subtitle:
+      "Blazing-fast storage for instant loads. Up to 7,450 MB/s read speeds.",
     cta: "Shop SSDs",
     href: "/category/ssd",
   },
@@ -62,7 +69,9 @@ export default function HeroSlider() {
           <div
             key={slide.id}
             className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-              index === current ? "opacity-100 scale-100" : "opacity-0 scale-105"
+              index === current
+                ? "opacity-100 scale-100"
+                : "opacity-0 scale-105"
             }`}
           >
             <Image
@@ -116,7 +125,9 @@ export default function HeroSlider() {
             key={slide.id}
             onClick={() => setCurrent(index)}
             className={`h-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-primary/50 ${
-              index === current ? "w-6 bg-primary" : "w-2 bg-foreground/30 hover:bg-foreground/60"
+              index === current
+                ? "w-6 bg-primary"
+                : "w-2 bg-foreground/30 hover:bg-foreground/60"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
