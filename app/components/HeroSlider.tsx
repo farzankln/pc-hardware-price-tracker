@@ -19,7 +19,8 @@ const slides: Slide[] = [
   {
     id: "slide-1",
     imageUrl: "/hero/GPU.webp",
-    fallbackImageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=RTX+40+Series",
+    fallbackImageUrl:
+      "https://placehold.co/1200x500/1e293b/818cf8?text=RTX+40+Series",
     title: "RTX 40 Series GPUs",
     subtitle: "Unleash 4K gaming with ray tracing and AI-powered DLSS 3.",
     cta: "Shop GPUs",
@@ -28,7 +29,8 @@ const slides: Slide[] = [
   {
     id: "slide-2",
     imageUrl: "/hero/RAM.png",
-    fallbackImageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=DDR5+Memory",
+    fallbackImageUrl:
+      "https://placehold.co/1200x500/1e293b/818cf8?text=DDR5+Memory",
     title: "DDR5 Memory Deals",
     subtitle:
       "Speed up your system with high-frequency DDR5 kits. Limited time offers.",
@@ -38,7 +40,8 @@ const slides: Slide[] = [
   {
     id: "slide-3",
     imageUrl: "/hero/CPU.webp",
-    fallbackImageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=Next-Gen+CPUs",
+    fallbackImageUrl:
+      "https://placehold.co/1200x500/1e293b/818cf8?text=Next-Gen+CPUs",
     title: "Next-Gen CPUs Are Here",
     subtitle:
       "Upgrade your rig with the latest processors. Unmatched performance for gaming and creation.",
@@ -48,7 +51,8 @@ const slides: Slide[] = [
   {
     id: "slide-4",
     imageUrl: "/hero/SSD.png",
-    fallbackImageUrl: "https://placehold.co/1200x500/1e293b/818cf8?text=NVMe+SSDs",
+    fallbackImageUrl:
+      "https://placehold.co/1200x500/1e293b/818cf8?text=NVMe+SSDs",
     title: "NVMe SSDs On Sale",
     subtitle:
       "Blazing-fast storage for instant loads. Up to 7,450 MB/s read speeds.",
@@ -85,14 +89,18 @@ export default function HeroSlider() {
     <div className="relative container mx-auto w-full overflow-hidden rounded-xl">
       <div className="relative h-[280px] w-full sm:h-[400px] md:h-[500px] lg:h-[620px]">
         {slides.map((slide, index) => {
-          const src = imageErrors[slide.id] ? slide.fallbackImageUrl : slide.imageUrl;
+          const src = imageErrors[slide.id]
+            ? slide.fallbackImageUrl
+            : slide.imageUrl;
           const isActive = index === current;
 
           return (
             <div
               key={slide.id}
               className={`absolute inset-0 transition-all duration-700 ease-in-out ${
-                isActive ? "opacity-100 scale-100 z-10" : "opacity-0 scale-105 z-0"
+                isActive
+                  ? "opacity-100 scale-100 z-10"
+                  : "opacity-0 scale-105 z-0"
               }`}
             >
               <Image
@@ -128,14 +136,14 @@ export default function HeroSlider() {
 
       <button
         onClick={prev}
-        className="absolute z-20 left-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition hover:bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
+        className="absolute cursor-pointer z-20 left-3 top-1/2 -translate-y-1/2 flex h-16 w-8 items-center justify-center rounded-full border border-primary bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition hover:bg-background focus:outline-none hover:ring-2 hover:ring-primary/50"
         aria-label="Previous slide"
       >
         <ChevronLeft className="h-5 w-5" />
       </button>
       <button
         onClick={next}
-        className="absolute z-20 right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition hover:bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
+        className="absolute cursor-pointer z-20 right-3 top-1/2 -translate-y-1/2 flex h-16 w-8 items-center justify-center rounded-full border border-primary bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition hover:bg-background focus:outline-none hover:ring-2 hover:ring-primary/50"
         aria-label="Next slide"
       >
         <ChevronRight className="h-5 w-5" />
@@ -146,7 +154,7 @@ export default function HeroSlider() {
           <button
             key={slide.id}
             onClick={() => setCurrent(index)}
-            className={`h-2 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+            className={`h-2 cursor-pointer rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-primary/50 ${
               index === current
                 ? "w-6 bg-primary"
                 : "w-2 bg-foreground/30 hover:bg-foreground/60"
