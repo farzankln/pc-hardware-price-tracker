@@ -136,14 +136,14 @@ export default function HeroSlider() {
 
       <button
         onClick={prev}
-        className="absolute cursor-pointer z-20 left-3 top-1/2 -translate-y-1/2 flex h-16 w-8 items-center justify-center rounded-full border border-primary bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition hover:bg-background focus:outline-none hover:ring-2 hover:ring-primary/50"
+        className="absolute cursor-pointer z-20 left-3 top-1/2 -translate-y-1/2 flex h-16 w-8 items-center justify-center rounded-full border border-primary/50 bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition hover:bg-background focus:outline-none hover:ring-2 hover:ring-primary/50"
         aria-label="Previous slide"
       >
         <ChevronLeft className="h-5 w-5" />
       </button>
       <button
         onClick={next}
-        className="absolute cursor-pointer z-20 right-3 top-1/2 -translate-y-1/2 flex h-16 w-8 items-center justify-center rounded-full border border-primary bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition hover:bg-background focus:outline-none hover:ring-2 hover:ring-primary/50"
+        className="absolute cursor-pointer z-20 right-3 top-1/2 -translate-y-1/2 flex h-16 w-8 items-center justify-center rounded-full border border-primary/50 bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition hover:bg-background focus:outline-none hover:ring-2 hover:ring-primary/50"
         aria-label="Next slide"
       >
         <ChevronRight className="h-5 w-5" />
