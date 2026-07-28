@@ -7,18 +7,15 @@ import type { Product } from "../data/mock-products";
 import { Heart } from "lucide-react";
 import { useWishlist } from "../hooks/useWishlist";
 
-export default function ProductCard({
-  product,
-  separator = false,
-}: {
-  product: Product;
-  separator?: boolean;
-}) {
+export default function ProductCard({ product }: { product: Product }) {
   const { toggleWishlist, isInWishlist } = useWishlist();
   const inWishlist = isInWishlist(product.id);
   const hasDiscount = typeof product.originalPrice === "number";
   const discountPercent = hasDiscount
-    ? Math.round(((product.originalPrice! - product.price) / product.originalPrice!) * 100)
+    ? Math.round(
+        ((product.originalPrice! - product.price) / product.originalPrice!) *
+          100,
+      )
     : 0;
   const [imgSrc, setImgSrc] = useState(product.imageUrl);
 
@@ -30,21 +27,17 @@ export default function ProductCard({
 
   return (
     <div
-      className={`group relative flex flex-col rounded-xl border border-border bg-background transition-all duration-200 hover:shadow-lg hover:shadow-primary/5 hover:border-border-strong ${
-        separator
-          ? "border-r border-t-0 border-b-0 border-l-0 rounded-none last:border-r-0"
-          : ""
-      }`}
+      className={`group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-background transition-all duration-200 hover:shadow-lg hover:shadow-primary/5 hover:border-border-strong`}
     >
-      <Link href={`/product/${product.id}`} className="flex flex-col flex-1">
-        <div className="relative aspect-square w-full bg-surface">
+      <Link href={`/product/${product.id}`} className="flex flex-1 flex-col">
+        <div className="relative aspect-square w-full overflow-hidden bg-white">
           <Image
             src={imgSrc}
             alt={product.name}
             fill
             unoptimized
             onError={handleImageError}
-            className="object-contain p-3 transition-transform duration-300 group-hover:scale-105"
+            className="object-contain p-4 transition-transform duration-300 group-hover:scale-105"
           />
           {hasDiscount && (
             <span className="absolute left-2 top-2 rounded-lg bg-primary px-2 py-0.5 text-xs font-bold text-primary-foreground">
@@ -85,10 +78,16 @@ export default function ProductCard({
           e.preventDefault();
           toggleWishlist(product.id);
         }}
-        className="absolute right-2 top-2 rounded-lg bg-background/80 p-1.5 text-text-muted opacity-0 backdrop-blur-sm transition-all duration-200 group-hover:opacity-100 hover:text-danger focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary/50"
+        className={`absolute right-2 top-2 rounded-lg bg-background/80 p-1.5 backdrop-blur-sm transition-all duration-200 hover:bg-background/90 focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+          inWishlist
+            ? "opacity-100 text-danger"
+            : "opacity-0 text-text-muted group-hover:opacity-100"
+        }`}
         aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
       >
-        <Heart className={`h-4 w-4 ${inWishlist ? "fill-danger text-danger" : ""}`} />
+        <Heart
+          className={`h-4 w-4 ${inWishlist ? "fill-danger text-danger" : ""}`}
+        />
       </button>
     </div>
   );
