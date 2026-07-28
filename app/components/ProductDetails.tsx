@@ -137,7 +137,7 @@ export default function ProductDetails({ product }: { product: Product }) {
       </nav>
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-        <div className="relative aspect-square w-full lg:aspect-auto lg:h-[500px] bg-surface rounded-2xl overflow-hidden">
+        <div className="relative aspect-square w-full lg:aspect-auto lg:h-[500px] bg-white rounded-2xl overflow-hidden">
           <Image
             src={imgSrc}
             alt={product.name}
