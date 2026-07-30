@@ -46,14 +46,6 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
           <p className="text-sm text-text-muted"> PC Hardware Price Tracker. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <a href="#" className="text-text-muted transition hover:text-foreground" aria-label="GitHub">
-              <ExternalLink className="h-5 w-5" />
-            </a>
-            <a href="#" className="text-text-muted transition hover:text-foreground" aria-label="Twitter">
-              <ExternalLink className="h-5 w-5" />
-            </a>
-          </div>
         </div>
       </div>
     </footer>
